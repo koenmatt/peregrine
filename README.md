@@ -325,7 +325,7 @@ plot_multiple_continuous_distributions(['LotFrontage', 'LotArea', 'MasVnrArea'],
 
 
     
-![png](output_10_0.png)
+![png](README_files/README_10_0.png)
     
 
 
