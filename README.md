@@ -3,21 +3,8 @@ I have included most related code in
 
 #### Installing and importing the dependencies
 
-
-```python
-!pip install -r requirements.txt --quiet
-```
-
-
-```python
-import numpy as np
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-import warnings
-warnings.filterwarnings('ignore')
-%matplotlib inline
-```
+    [31mERROR: Could not open requirements file: [Errno 2] No such file or directory: 'requirements.txt'[0m[31m
+    [0m
 
 # Prompt
 
@@ -34,16 +21,6 @@ Applying this to our task,
 <!-- The COMMANDER stands for the virtues of wisdom, sincerity, benevolence, courage and strictness.
  -->
 
-
-
-```python
-FILE_PATH = 'test.csv'
-df = pd.read_csv(FILE_PATH)
-print("--------------------")
-print(f"Shape: {df.shape}")
-print("--------------------")
-df.head()
-```
 
     --------------------
     Shape: (1459, 80)
@@ -222,19 +199,8 @@ df.head()
 
 
 
-
-```python
-print(list(df.columns))
-```
-
     ['Id', 'MSSubClass', 'MSZoning', 'LotFrontage', 'LotArea', 'Street', 'Alley', 'LotShape', 'LandContour', 'Utilities', 'LotConfig', 'LandSlope', 'Neighborhood', 'Condition1', 'Condition2', 'BldgType', 'HouseStyle', 'OverallQual', 'OverallCond', 'YearBuilt', 'YearRemodAdd', 'RoofStyle', 'RoofMatl', 'Exterior1st', 'Exterior2nd', 'MasVnrType', 'MasVnrArea', 'ExterQual', 'ExterCond', 'Foundation', 'BsmtQual', 'BsmtCond', 'BsmtExposure', 'BsmtFinType1', 'BsmtFinSF1', 'BsmtFinType2', 'BsmtFinSF2', 'BsmtUnfSF', 'TotalBsmtSF', 'Heating', 'HeatingQC', 'CentralAir', 'Electrical', '1stFlrSF', '2ndFlrSF', 'LowQualFinSF', 'GrLivArea', 'BsmtFullBath', 'BsmtHalfBath', 'FullBath', 'HalfBath', 'BedroomAbvGr', 'KitchenAbvGr', 'KitchenQual', 'TotRmsAbvGrd', 'Functional', 'Fireplaces', 'FireplaceQu', 'GarageType', 'GarageYrBlt', 'GarageFinish', 'GarageCars', 'GarageArea', 'GarageQual', 'GarageCond', 'PavedDrive', 'WoodDeckSF', 'OpenPorchSF', 'EnclosedPorch', '3SsnPorch', 'ScreenPorch', 'PoolArea', 'PoolQC', 'Fence', 'MiscFeature', 'MiscVal', 'MoSold', 'YrSold', 'SaleType', 'SaleCondition']
 
-
-
-```python
-missing_data = describe_missing_data(df)
-missing_data.head(10)
-```
 
 
 
@@ -319,65 +285,9 @@ missing_data.head(10)
 
 
 
-```python
-plot_multiple_continuous_distributions(['LotFrontage', 'LotArea', 'MasVnrArea'], df)
-```
-
-
     
 ![png](README_files/README_10_0.png)
     
 
 
 # Helper Functions - EXECUTE THIS CELL FIRST
-
-
-```python
-def describe_missing_data(df):
-    """Describes the null values present in our dataset"""
-    total = df.isnull().sum().sort_values(ascending=False)
-    percent = (df.isnull().sum()/df.isnull().count()).sort_values(ascending=False)
-    missing_data = pd.concat([total, percent], axis=1, keys=['Total', 'Percent'])
-    return missing_data
-
-def plot_multiple_continuous_distributions(col_names, df):
-    """Plot the distributions of the list of column names 
-    from the dataframe, df."""
-    
-    num_cols = min(3, len(col_names))
-    num_rows = (len(col_names) + 2) // 3  
-    
-    fig, axes = plt.subplots(num_rows, 3, figsize=(15, 4 * num_rows))
-    axes = axes.flatten()
-    
-    for i, name in enumerate(col_names):
-        sns.distplot(df[name], ax=axes[i])
-        axes[i].set_title(name)
-    
-    for j in range(len(col_names), len(axes)):
-        fig.delaxes(axes[j])
-    
-    plt.tight_layout()
-    plt.show()
-    
-def analyze_distribution(col_name, df): 
-    ...
-    
-def remove_outliers_IQR():
-    """Remove outliers using IQR from the dataset"""
-    ...
-
-def cluster_graph():
-    ...
-
-def cluster_classifier():
-    ...
-
-# sns.pairplot(df)
-
-```
-
-
-```python
-
-```
